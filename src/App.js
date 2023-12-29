@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/home';
 import DictionaryAlphabet from './pages/dictionaryAlphabet';
-import Blog from './components/Blog/blog';
+import Blog from './components/blog/blog';
 import LogIn from './pages/login';
 import SignUp from './pages/signUp';
 import UniquePage from './pages/uniquePage';
