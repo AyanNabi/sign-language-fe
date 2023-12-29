@@ -41,29 +41,29 @@ export default function Contact() {
             <ul className="contact-social">
               <li>
                 <a href="" className="me-4 text-reset">
-                  <MDBIcon color="secondary" fab icon="facebook-f" />
+                  <MDBIcon color="white" fab icon="facebook-f fa-2x" />
                 </a>
               </li>
               <li>
                 <a href="" className="me-4 text-reset">
-                  <MDBIcon color="secondary" fab icon="google" />
+                  <MDBIcon color="white" fab icon="google fa-2x" />
                 </a>
               </li>
               <li>
                 <a href="" className="me-4 text-reset">
-                  <MDBIcon color="secondary" fab icon="instagram" />
-                </a>
-              </li>
-              <li>
-                {" "}
-                <a href="" className="me-4 text-reset">
-                  <MDBIcon color="secondary" fab icon="linkedin" />
+                  <MDBIcon color="white" fab icon="instagram fa-2x" />
                 </a>
               </li>
               <li>
                 {" "}
                 <a href="" className="me-4 text-reset">
-                  <MDBIcon color="secondary" fab icon="youtube" />
+                  <MDBIcon color="white" fab icon="linkedin fa-2x" />
+                </a>
+              </li>
+              <li>
+                {" "}
+                <a href="" className="me-4 text-reset">
+                  <MDBIcon color="white" fab icon="youtube fa-2x" />
                 </a>
               </li>
             </ul>
