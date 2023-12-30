@@ -1,75 +1,104 @@
-import React from 'react'
-import Layout from '../components/Layout/layout';
-import '../assets/contact.css';
+import React from "react";
+import Layout from "../components/Layout/layout";
+import "../components/contact/contact.css";
+import { MDBIcon } from "mdb-react-ui-kit";
 
-
-// const Contact = () => 
 export default function Contact() {
   return (
-<Layout>
-<section>
-      <div className="container">
-        <div className="contactInfo">
-          <div>
-            <h2>Contact Info</h2>
-            <ul className="info">
+    <Layout>
+      <section>
+        <div className="contact-container">
+          <div className="contactInfo">
+            <div>
+              <h2>Contact Info</h2>
+              <ul className="info">
+                <li>
+                  <span>
+                  <i class="fas fa-location-dot fa-2x"></i>
+                  </span>
+                  <span>
+                    Ahmadbey Aghaoglu str. 61
+                    <br />
+                    Baku, AZ <br />
+                    1008
+                  </span>
+                </li>
+                <li>
+                  <span>
+                  <i class="fas fa-envelope fa-2x"></i>
+                  </span>
+                  <span>info@jestdili.az</span>
+                </li>
+                <li>
+                  <span>
+                  <i class="fas fa-phone-volume fa-2x"></i>
+                  </span>
+                  <span>+994 55 555 55 55</span>
+                </li>
+              </ul>
+            </div>
+
+            <ul className="contact-social">
               <li>
-                <span><img src='' alt='img'></img></span>
-                <span>Ahmadbey Aghaoglu str. 61<br />
-                Baku, AZ <br />
-                1008</span>
+                <a href="" className="me-4 text-reset">
+                  <MDBIcon color="white" fab icon="facebook-f fa-2x" />
+                </a>
               </li>
               <li>
-                <span><img src='' alt='img'></img></span>
-                <span>info@jestdili.az</span>
+                <a href="" className="me-4 text-reset">
+                  <MDBIcon color="white" fab icon="google fa-2x" />
+                </a>
               </li>
               <li>
-                <span><img src='' alt='img'></img></span>
-                <span>+994 55 555 55 55</span>
+                <a href="" className="me-4 text-reset">
+                  <MDBIcon color="white" fab icon="instagram fa-2x" />
+                </a>
+              </li>
+              <li>
+                {" "}
+                <a href="" className="me-4 text-reset">
+                  <MDBIcon color="white" fab icon="linkedin fa-2x" />
+                </a>
+              </li>
+              <li>
+                {" "}
+                <a href="" className="me-4 text-reset">
+                  <MDBIcon color="white" fab icon="youtube fa-2x" />
+                </a>
               </li>
             </ul>
           </div>
-          <ul className="social">
-            <li><a href="#"><img src='' alt='img'/></a></li>
-            <li><a href="#"><img src='' alt='img'/></a></li>
-            <li><a href="#"><img src='' alt='img'/></a></li>
-            <li><a href="#"><img src='' alt='img'/></a></li>
-            <li><a href="#"><img src='' alt='img'/></a></li>
-          </ul>
-        </div>
 
-        <div className="contactForm">
-          <h2>Send a Message!</h2>
-          <div className="formBox">
-            <div className="inputBox w50">
-              <input type="text" required />
-              <span>First Name</span>
-            </div>
-            <div className="inputBox w50">
-              <input type="text" required />
-              <span>Last Name</span>
-            </div>
-            <div className="inputBox w50">
-              <input type="email" required />
-              <span>Email Address</span>
-            </div>
-            <div className="inputBox w50">
-              <input type="tel" required />
-              <span>Mobile Number</span>
-            </div>
-            <div className="inputBox w100">
-              <textarea required></textarea>
-              <span>Type your message here...</span>
-            </div>
-            <div className="inputBox w100">
-              <input type="submit" value="Send" />
+          <div className="contactForm">
+            <h2>Send a Message!</h2>
+            <div className="formBox">
+              <div className="inputBox w50">
+                <input type="text" required />
+                <span>First Name</span>
+              </div>
+              <div className="inputBox w50">
+                <input type="text" required />
+                <span>Last Name</span>
+              </div>
+              <div className="inputBox w50">
+                <input type="email" required />
+                <span>Email Address</span>
+              </div>
+              <div className="inputBox w50">
+                <input type="tel" required />
+                <span>Mobile Number</span>
+              </div>
+              <div className="inputBox w100">
+                <textarea required></textarea>
+                <span>Type your message here...</span>
+              </div>
+              <div className="inputBox w100">
+                <input type="submit" value="Send" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* <Footer/> */}
-    </section>
-</Layout>
- 
-  )
+      </section>
+    </Layout>
+  );
 }

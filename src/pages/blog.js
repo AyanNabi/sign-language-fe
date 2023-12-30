@@ -1,8 +1,8 @@
 import React from 'react'
 import Layout from '../components/Layout/layout'
 import { Col, Row } from 'antd'
-import LeftSideBlog from '../components/Blog/leftSideBlog'
-import RightSideBlog from '../components/Blog/rightSideBlog'
+import LeftSideBlog from '../components/blog/leftSideBlog'
+import RightSideBlog from '../components/blog/rightSideBlog'
 const Blog = () => {
   return (
   <Layout>
