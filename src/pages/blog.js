@@ -1,7 +1,11 @@
 import React from 'react'
 import Layout from '../components/Layout/layout'
 import { Col, Row } from 'antd'
+<<<<<<< HEAD
 import LeftSideBlog from '../components/blog/leftSideBlog';
+=======
+import LeftSideBlog from '../components/blog/leftSideBlog'
+>>>>>>> cbe95bbb11e28d49dd09e03a9ca9f23a0417c227
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import RightSideBlog from '../components/blog/rightSideBlog'
 const Blog = () => {
