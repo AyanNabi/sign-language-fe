@@ -5,7 +5,6 @@ import Layout from "../components/Layout/layout";
 
 export const LogIn = () => {
   return (
-<Layout>
 <div className="container">
       <div className="frame">
         <div className="form-container">
@@ -44,7 +43,6 @@ export const LogIn = () => {
         <p>New User? Create an account</p>
       </div>
     </div>
-</Layout>
    
   );
 };

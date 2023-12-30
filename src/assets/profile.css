@@ -1,134 +1,169 @@
-.container {
-  display: flex;
-  justify-content: space-around;
-  position: relative;
-  padding: 300px;
-}
 
-.frame1 {
-  border: 2px solid #000000;
-  border-radius: 16px;
-  height: 280px;
-  overflow: hidden;
-  padding-top: 20px;
-  padding-left: 5px;
-  position: relative;
-  display: block;
-  width: 280px;
-  font-size: 30px;
-}
-
-.icons {
+.profile-main {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
   align-items: center;
-  margin-left: 15px;
-  float: left;
+  justify-content: center;
+  height: 100vh;
+  font-size: 16px;
+  font-family: "Inter";
+  font-weight: "400";
 }
 
-.icons svg {
-  margin-bottom: 10px;
+.side-bar {
+  flex: 0 0 150px;
+  padding: 20px;
+  text-align: center;
 }
 
-.elements {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.elements h3 {
-  color: #000000;
-  font-family: "Inter-Regular", Helvetica;
-  font-size: 20px;
-  margin: 8px;
+.side-bar img {
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .profile {
-  border: 2px solid #000000;
-  border-radius: 16px;
-  height: 580px;
-  width: 800px;
+  flex: 1;
+  max-width: 800px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-start; /* Align left */
+  margin-left: 20px;
 }
 
-h2, p {
-  margin: 8px;
-  padding: 8px;
-  align-items: center;
+.right-profile,
+.profile-forms {
+  flex: 1;
+  padding: 20px;
 }
 
-form {
+/* form {
+  margin-bottom: 20px;
+} */
+
+.profile-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.profile-input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.profile-button {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 10px;
-  padding-left: 10px;
-}
-
-.save-changes-btn {
   margin-top: 20px;
 }
 
-.left-profile {
-  width: 300px;
-  float: left;
+/* .btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #5c6bc0;
+  color: white;
+  margin-right: 10px;
+} */
+
+/* .btn:last-child {
+  margin-right: 0;
+} */
+
+.profile-save-button {
+  background-color: #2b2676;
+  color: white;
 }
+
 
 .right-profile {
-  padding-top: 80px;
-  width: 100px;
-  float: right;
-
-}
-/* ... your existing styles ... */
-
-.dropdown {
-  position: absolute;
-  top: 20px; /* Adjust as needed for the desired space from the top */
-  right: 600px; /* Adjust as needed for the desired space from the right */
-  padding: 10px;
-  cursor: pointer;
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-/* ... your existing styles ... */
+.profile-edit-details-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
+.profile-arrow-icon {
+  font-size: 24px;
+  color: #5c6bc0;
+  margin-left: 100px;
+}
 
-.dropdown-content {
+.profile-photo-dropdown {
   display: none;
   position: absolute;
-  top: 30px; 
-  right: 600;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  top: 80;
+  bottom: 30px;
+  /* right: 0; */
 }
 
-.dropdown:hover .dropdown-content {
+/* .edit-icon:hover + .photo-dropdown,
+.photo-dropdown:hover {
   display: block;
-}
+} */
 
-/* .dropdown-content p {
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+.profile-photo-dropdown select {
   cursor: pointer;
-} */
-
-/* .dropdown-content p:hover {
-  background-color: #f1f1f1;
-} */
-
-img{
-  width: 100px;
-  height: 100px;
 }
 
-h1 {
+.profile-photo-container {
+  position: relative;
+}
+
+/* .edit-icon {
   position: absolute;
-  top: 200px; /* Adjust as needed */
-  left: 360px; /* Adjust as needed */
+  bottom: 0;
+  right: 0;
+  background-color: #ffffff;
+  padding: 5px;
+} */
+
+.profile-icon-container {
+  display: flex;
+  align-items: center;
+
+
+}
+
+.profile-heart-icon,
+.profile-exit-icon {
+  margin-right: 60px; 
+  font-size: 28px; 
+
+}
+
+.profile-photo-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-profile-photo {
+  margin-bottom: 10px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #5c6bc0;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.button-profile-photo:last-child {
+  margin-bottom: 0;
 }

@@ -7,7 +7,6 @@ import Layout from "../components/Layout/layout";
 
 const SignUp = () => {
   return (
-    <Layout>
     <div className="container">
           <div className="frame">
             <div className="form-container">
@@ -52,7 +51,6 @@ const SignUp = () => {
             <p>Already a user? Log in</p>
           </div>
         </div>
-    </Layout>
    
   );
 };
