@@ -8,6 +8,7 @@ import {
     MDBBtn,
     MDBRipple
   } from 'mdb-react-ui-kit';
+  import '../blog/rightSide.css'
   import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
   import { MDBPagination, MDBPaginationItem, MDBPaginationLink } from 'mdb-react-ui-kit';
 
@@ -16,82 +17,100 @@ import {
 const RightSideBlog = () => {
 
   return (
-    <div>
-         <MDBRow>
-        <MDBCol size='6'>
+    <div    style={{
+      padding:"20px 0px",
+  }}>
+         <MDBRow style={{marginBottom:"70px "}}>
+        <MDBCol  md='6' lg='6' xl='6' >
         <MDBCard>
-      <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
-        <MDBCardImage width="100" src='https://mdbootstrap.com/img/new/standard/nature/111.webp' fluid alt='...' />
-        <a>
-          <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
-        </a>
-      </MDBRipple>
+        <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
+          <MDBCardImage className='w-100'  src='/demo-pic.png' fluid alt='...' />
+          <a>
+            <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+          </a>
+        </MDBRipple>
       <MDBCardBody>
-        <MDBCardTitle>Card title</MDBCardTitle>
+
+      <MDBCardTitle className='subtitle-post-card'>Recent Updates - 12/10/2023</MDBCardTitle>
+
+        <MDBCardTitle>Lorem Ipsum</MDBCardTitle>
+
+        
         <MDBCardText>
-          Some quick example text to build on the card title and make up the bulk of the card's content.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab magnam totam quas! Rem minima deleniti non accusamus totam, natus, earum nam enim beatae voluptatem eaque!
         </MDBCardText>
-        <MDBBtn href='#'>Button</MDBBtn>
       </MDBCardBody>
     </MDBCard>
         </MDBCol>
-        <MDBCol size='6'>
+        <MDBCol   md='6' lg='6' xl='6'>
         <MDBCard>
-      <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
-        <MDBCardImage width="100" src='https://mdbootstrap.com/img/new/standard/nature/111.webp' fluid alt='...' />
-        <a>
-          <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
-        </a>
-      </MDBRipple>
+        <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
+        <MDBCardImage className='w-100' src='/demo-pic.png' fluid alt='...' />
+          <a>
+            <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+          </a>
+        </MDBRipple>
       <MDBCardBody>
-        <MDBCardTitle>Card title</MDBCardTitle>
+
+      <MDBCardTitle className='subtitle-post-card'>Recent Updates - 12/10/2023</MDBCardTitle>
+
+        <MDBCardTitle>Lorem Ipsum</MDBCardTitle>
+
+        
         <MDBCardText>
-          Some quick example text to build on the card title and make up the bulk of the card's content.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab magnam totam quas! Rem minima deleniti non accusamus totam, natus, earum nam enim beatae voluptatem eaque!
         </MDBCardText>
-        <MDBBtn href='#'>Button</MDBBtn>
       </MDBCardBody>
     </MDBCard>
         </MDBCol>
       </MDBRow>
-      <MDBRow>
-        <MDBCol size='6'>
+      <MDBRow style={{marginBottom:"70px "}}>
+        <MDBCol  md='6' lg='6' xl='6'>
         <MDBCard>
-      <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
-        <MDBCardImage width="100" src='https://mdbootstrap.com/img/new/standard/nature/111.webp' fluid alt='...' />
-        <a>
-          <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
-        </a>
-      </MDBRipple>
+        <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
+        <MDBCardImage className='w-100' src='/demo-pic.png' fluid alt='...' />
+          <a>
+            <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+          </a>
+        </MDBRipple>
       <MDBCardBody>
-        <MDBCardTitle>Card title</MDBCardTitle>
+
+      <MDBCardTitle className='subtitle-post-card'>Recent Updates - 12/10/2023</MDBCardTitle>
+
+        <MDBCardTitle>Lorem Ipsum</MDBCardTitle>
+
+        
         <MDBCardText>
-          Some quick example text to build on the card title and make up the bulk of the card's content.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab magnam totam quas! Rem minima deleniti non accusamus totam, natus, earum nam enim beatae voluptatem eaque!
         </MDBCardText>
-        <MDBBtn href='#'>Button</MDBBtn>
       </MDBCardBody>
     </MDBCard>
         </MDBCol>
-        <MDBCol size='6'>
+        <MDBCol  md='6' lg='6' xl='6'>
         <MDBCard>
-      <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
-        <MDBCardImage width="100" src='https://mdbootstrap.com/img/new/standard/nature/111.webp' fluid alt='...' />
-        <a>
-          <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
-        </a>
-      </MDBRipple>
+        <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
+        <MDBCardImage className='w-100' src='/demo-pic.png' fluid alt='...' />
+          <a>
+            <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+          </a>
+        </MDBRipple>
       <MDBCardBody>
-        <MDBCardTitle>Card title</MDBCardTitle>
+
+      <MDBCardTitle className='subtitle-post-card'>Recent Updates - 12/10/2023</MDBCardTitle>
+
+        <MDBCardTitle>Lorem Ipsum</MDBCardTitle>
+
+        
         <MDBCardText>
-          Some quick example text to build on the card title and make up the bulk of the card's content.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab magnam totam quas! Rem minima deleniti non accusamus totam, natus, earum nam enim beatae voluptatem eaque!
         </MDBCardText>
-        <MDBBtn href='#'>Button</MDBBtn>
       </MDBCardBody>
     </MDBCard>
         </MDBCol>
       </MDBRow>
 
 
-      <div className='pagination'>
+      <div className='pagination justify-content-center mt-5'>
       <nav aria-label='Page navigation example'>
       <MDBPagination center className='mb-0'>
         <MDBPaginationItem disabled>
