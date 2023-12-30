@@ -1,62 +1,117 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import {
+  MDBContainer,
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBNavbarToggler,
+  MDBIcon,
+  MDBNavbarNav,
+  MDBNavbarItem,
+  MDBNavbarLink,
+  MDBBtn,
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem,
+  MDBCollapse,
+} from 'mdb-react-ui-kit';
 import './navbar.css';
 
 
 function Navbar() {
-  const [selectedLanguage, setSelectedLanguage] = useState('AZ');
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-  // const [selectedLanguage, setSelectedLanguage] = useState('AZ');
+  const [openBasic, setOpenBasic] = useState(false);
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
-
-  const changeLanguage = (language) => {
-    setSelectedLanguage(language);
-    setDropdownOpen(false);
-  };
+  
 
   return (
-   
-    <nav>
-      <div className='logo-and-brand'>
-      <div className="logo">
-        <img src="/logo.jpg" alt="Logo" />
-      </div>
-      <div className="brand">
-        <span>Jest Dili</span>
-      </div>
-      </div>
+    <MDBNavbar expand='lg' light bgColor='light'>
+    <MDBContainer fluid>
+      <MDBNavbarBrand href='#'>
+      <img
+      
+              src='/logo.jpg'
+              height='30'
+              alt=''
+              loading='lazy'
+            />
+            <span style={{fontWeight:"bold"}}>Jest Dili</span>
 
-      <div className="pages">
-        <a href="/">Home</a>
-        <a href="#about-section">About</a>
-        <a href="/dictionary">Dictionary</a>
-        <a href="/blog">Blog</a>
-        <a href="/contact">Contact</a>
-      </div>
+      </MDBNavbarBrand>
 
-      <div className="language-dropdown">
-        <button onClick={toggleDropdown}>
-          {selectedLanguage}
-        </button>
-        {isDropdownOpen && (
-          <div className="dropdown-content">
-            <a onClick={() => changeLanguage('AZ')}>Azerbaijani</a>
-            <a onClick={() => changeLanguage('EN')}>English</a>
-            <a onClick={() => changeLanguage('RU')}>Russian</a>
-          </div>
-        )}
-      </div>
-
-      <div className="buttons">
+      <MDBNavbarToggler
+        aria-controls='navbarSupportedContent'
+        aria-expanded='false'
+        aria-label='Toggle navigation'
+        onClick={() => setOpenBasic(!openBasic)}
         
-        <button ><a href="/login">Login</a></button>
-        <button><a href="/sign">Sign up</a></button>
-      </div>
-    </nav>
+      >
+        <MDBIcon icon='bars' fas />
+      </MDBNavbarToggler>
+
+      <MDBCollapse navbar open={openBasic}>
+        <MDBNavbarNav className='justify-content-end mr-auto mb-2 mb-lg-0'>
+          <MDBNavbarItem>
+            <MDBNavbarLink active aria-current='page' href='/home'>
+              Home
+            </MDBNavbarLink>
+          </MDBNavbarItem>
+          <MDBNavbarItem>
+            <MDBNavbarLink active aria-current='page' href='/about'>
+              About us
+            </MDBNavbarLink>
+          </MDBNavbarItem>
+          <MDBNavbarItem>
+            <MDBNavbarLink active aria-current='page' href='/dictionary'>
+              Dictionary
+            </MDBNavbarLink>
+          </MDBNavbarItem>
+          <MDBNavbarItem>
+            <MDBNavbarLink active aria-current='page' href='/blog'>
+              Blog
+            </MDBNavbarLink>
+          </MDBNavbarItem>
+          <MDBNavbarItem>
+            <MDBNavbarLink active aria-current='page' href='/contact'>
+              Contact us
+            </MDBNavbarLink>
+          </MDBNavbarItem>
+         
+          <MDBNavbarItem>
+            <MDBDropdown>
+              <MDBDropdownToggle tag='a' className='nav-link' role='button'>
+                AZ
+              </MDBDropdownToggle>
+              <MDBDropdownMenu className=''>
+                <MDBDropdownItem link>AZ</MDBDropdownItem>
+                <MDBDropdownItem link>EN</MDBDropdownItem>
+                <MDBDropdownItem link>RU</MDBDropdownItem>
+              </MDBDropdownMenu>
+            </MDBDropdown>
+          </MDBNavbarItem>
+
+          
+        </MDBNavbarNav>
+
+        
+
+        <div className='d-flex input-group w-auto'>
+
+        <Link to="/login">
+        <div className='navbar-login-signup navbar-login'><span>Log in</span></div>
+        </Link>
+
+       <Link to="/sign">
+       <div className='navbar-login-signup navbar-signup'><span> Sign up</span></div>
+       </Link>
+
+       
+
+        </div>
+      </MDBCollapse>
+    </MDBContainer>
+  </MDBNavbar>
 
       )};
 export default Navbar;

@@ -8,7 +8,6 @@ const UniquePage = () => {
 
   return (
    <Layout>
-    <p></p>
     <Word element={word} />
    </Layout>
   )

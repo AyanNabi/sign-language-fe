@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, Row } from 'antd';
 import { Card } from 'antd';
+import  { useState, useEffect } from "react";
 import { Flex} from 'antd';
 import { Link } from 'react-router-dom';
 import {  Button, Space, Menu } from 'antd';
@@ -56,6 +57,35 @@ const word = ({element}) => {
     </Menu>
   ); 
 
+  // const url = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${element.category_id}/words/${element.id}`;
+
+  // const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const response = await fetch(url, {
+  //         method: 'GET',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //       });
+
+  //       if (response.ok) {
+  //         const responseData = await response.json();
+  //         setData(responseData); 
+  //         console.log(data);
+  //       } else {
+  //         console.error('API error:', response.statusText);
+  //       }
+  //     } catch (error) {
+  //       console.error('Fetch error:', error);
+  //     }
+  //   };
+  //   fetchCategories();
+  // }, []); 
+
+
   
   return (
     <>
@@ -107,42 +137,7 @@ const word = ({element}) => {
                     </Link>
               </Col>
                 
-              <Col  className='card-col' key={3} xs={{ span: 24 }}>
-              <Link to={`/dictionary/word1`}>
-              <CustomCountriesCard content={'word1'} /> 
-                    </Link>
             
-              </Col>
-                
-
-              <Col className='card-col' key={4} xs={{ span: 24 }} >
-              <Link to={`/dictionary/word1`}>
-              <CustomCountriesCard content={'word1'} /> 
-                    </Link>
-             
-              </Col>
-                
-
-              <Col className='card-col' key={5} xs={{ span: 24 }} >
-              <Link to={`/dictionary/word1`}>
-              <CustomCountriesCard content={'word1'} /> 
-                    </Link>
-             
-              </Col>
-
-              <Col className='card-col' key={5} xs={{ span: 24 }} >
-              <Link to={`/dictionary/word1`}>
-              <CustomCountriesCard content={'word1'} /> 
-                    </Link>
-              </Col>
-
-              <Col className='card-col' key={6} xs={{ span: 24 }}>
-              <Link to={`/dictionary/word1`}>
-              <CustomCountriesCard content={'word1'} /> 
-                    </Link>
-           
-              </Col>
-
          
               </Row>
             </Flex>
