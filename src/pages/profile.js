@@ -11,6 +11,7 @@ import Layout from "../components/Layout/layout";
 
 import axios from "axios";
 import "../assets/profile.css";
+import { Col, Row, Button, Form, Input, message, Space } from "antd";
 
 const Profile = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -119,103 +120,129 @@ const Profile = () => {
 
   return (
     <Layout>
-      <div className="profile-main">
-      <div className="side-bar">
-        <div className="profile-photo-container">
-          <img
-            src={
-              selectedFile
-                ? URL.createObjectURL(selectedFile)
-                : "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-            }
-            alt="Profile Photo"
-          />
-
-          {/* <div className="edit-icon">
-            <FontAwesomeIcon icon={faPen} />
-          </div> */}
-          <div className="profile-photo-buttons">
-  <label className="button-profile-photo">
-    Upload Photo
-    <input
-      type="file"
-      style={{ display: "none" }}
-      onChange={handleUpload}
-    />
-  </label>
-
-  <button className="button-profile-photo" onClick={handleChange}>
-    Change Photo
-  </button>
-
-  <button className="button-profile-photo" onClick={handleRemove}>
-    Remove Photo
-  </button>
-</div>
-
-        </div>
-        <h2>Full Name</h2>
-        <div className="profile-icon-container">
-          <div className="profile-heart-icon">
-            <FontAwesomeIcon icon={farHeart} />
-          </div>
-          <div className="profile-exit-icon">
-            <FontAwesomeIcon icon={faRightFromBracket} />
-          </div>
-        </div>
+  <Row justify="center" style={{ border: '1px solid red' }}>
+      <Col xs={{ span: 24, offset: 0 }} lg={{ span: 7, offset: 0 }} style={{ border: '1px solid black', display: 'flex', margin: '10px', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ border: '1px solid red', textAlign: 'center' }}>
+        <div className="circular" style={{ width: '200px', height: '200px', borderRadius: '50%', background: 'url("https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg") center/cover', border: '1px solid red', backgroundSize: 'cover' }} />
+        <div className="user_name">Full Name</div>
       </div>
-
-      <div className="profile">
-        <div className="right-profile">
-          <div className="profile-edit-details-container">
-            <p>
-              <FontAwesomeIcon icon={faPenToSquare} /> Edit Profile Details
-            </p>
-            <div className="profile-arrow-icon">
-              <FontAwesomeIcon icon={faArrowRight} />
-            </div>
+      <Row justify="center">
+        <Col>
+          <div className="profile-heart-icon">
+          <FontAwesomeIcon icon={farHeart} />
           </div>
-          <h2>Personal Info</h2>
-          <p>full name: {personalInfo.fullName}</p>
-          <p>age: {personalInfo.age}</p>
-          <p>email address: {personalInfo.emailAddress}</p>
-          <p>phone number: {personalInfo.phoneNumber}</p>
-        </div>
-        <div className="profile-forms">
-          <form action="" className="accountSettings" onSubmit={handleSubmit}>
+        </Col>
+        <Col>
+          <div className="profile-exit-icon">
+          <FontAwesomeIcon icon={faRightFromBracket} />
+          </div>
+        </Col>
+      </Row>
+    </Col>
+      <Col xs={{ span: 24, offset: 0 }} lg={{ span: 12, offset: 0 }} style={{ border: '1px solid green' }}>
+        <Row>
+          <Col xs={{ span: 24, offset: 0 }} md={{ span: 24, offset: 0 }} lg={{ span: 24, offset: 0 }} xl={{ span: 12, offset: 0 }} style={{ border: '1px solid red', margin: '5px' }}>
+            <p>
+            <FontAwesomeIcon icon={faPenToSquare} /> Edit Profile Detail <FontAwesomeIcon className="profile-arrow-icon" icon={faArrowRight} />
+            </p>
+            <h4>Personal Info</h4>
+            <Row className="fullname">
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 8, offset: 0 }} lg={{ span: 8, offset: 0 }} xl={{ span: 8, offset: 0 }}>
+                Full name
+              </Col>
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 4, offset: 0 }} lg={{ span: 4, offset: 0 }} xl={{ span: 4, offset: 0 }}>
+                :
+              </Col>
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 8, offset: 0 }} lg={{ span: 8, offset: 0 }} xl={{ span: 6, offset: 0 }}>
+              {personalInfo.fullName}
+              </Col>
+            </Row>
+            <Row className="age">
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 8, offset: 0 }} lg={{ span: 8, offset: 0 }} xl={{ span: 8, offset: 0 }}>
+                Age
+              </Col>
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 4, offset: 0 }} lg={{ span: 4, offset: 0 }} xl={{ span: 4, offset: 0 }}>
+                :
+              </Col>
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 8, offset: 0 }} lg={{ span: 8, offset: 0 }} xl={{ span: 6, offset: 0 }}>
+              {personalInfo.age}
+              </Col>
+            </Row>
+            <Row className="email">
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 8, offset: 0 }} lg={{ span: 8, offset: 0 }} xl={{ span: 8, offset: 0 }}>
+                Email address
+              </Col>
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 4, offset: 0 }} lg={{ span: 4, offset: 0 }} xl={{ span: 4, offset: 0 }}>
+                :
+              </Col>
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 8, offset: 0 }} lg={{ span: 8, offset: 0 }} xl={{ span: 6, offset: 0 }}>
+              {personalInfo.emailAddress}
+              </Col>
+            </Row>
+            <Row className="phonenumber">
+            <Col xs={{ span: 8, offset: 0 }} md={{ span: 8, offset: 0 }} lg={{ span: 8, offset: 0 }} xl={{ span: 8, offset: 0 }}>
+                Phone number
+              </Col>
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 4, offset: 0 }} lg={{ span: 4, offset: 0 }} xl={{ span: 4, offset: 0 }}>
+                :
+              </Col>
+              <Col xs={{ span: 8, offset: 0 }} md={{ span: 8, offset: 0 }} lg={{ span: 8, offset: 0 }} xl={{ span: 6, offset: 0 }}>
+              {personalInfo.phoneNumber}
+              </Col>
+            </Row>
+          </Col>
+          <Col xs={{ span: 24, offset: 0 }} md={{ span: 24, offset: 0 }} lg={{ span: 24, offset: 0 }} xl={{ span: 11, offset: 0 }} style={{ border: '1px solid red', margin: '5px' }} >
+            <Row justify="center" align="middle" style={{ height: '100%' }}>
+            <form action="" className="accountSettings" onSubmit={handleSubmit}>
             <div className="changeEmail">
               <p>Change email address</p>
-              <label className="profile-label" htmlFor="newEmail">Update email address</label>
-              <input
-              className="profile-input"
-                type="email"
-                id="newEmail"
-                name="newEmail"
-                placeholder="Enter new Email"
-                value={email}
-                onChange={handleEmailChange}
-              />
+              <Col>
+                <Row>
+                  <label className="profile-label" htmlFor="newEmail">Update email address</label>
+                </Row>
+                <Row>
+                <input
+                className="profile-input edit-input"
+                  type="email"
+                  id="newEmail"
+                  name="newEmail"
+                  placeholder="Enter new Email"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+                </Row>
+              </Col>
             </div>
             <hr />
 
             <div className="changePass">
               <p>Change password</p>
-              <label className="profile-label" htmlFor="currentPass">Current Password</label>
-              <input
-              className="profile-input"
-                type="password"
-                id="currentPass"
-                name="currentPass"
-                placeholder="********"
-                value={currentPassword}
-                onChange={handleCurrentPasswordChange}
-              />
+              <Col>
+                <Row>
+                <label className="profile-label" htmlFor="currentPass">Current Password</label>
+                </Row>
+                <Row>
+                  <input
+                className="profile-input edit-input"
+                  type="password"
+                  id="currentPass"
+                  name="currentPass"
+                  placeholder="********"
+                  value={currentPassword}
+                  onChange={handleCurrentPasswordChange}
+                />
+                </Row>
+              </Col>
             </div>
 
             <div className="newPass">
-              <label className="profile-label" htmlFor="newPassword">New Password</label>
-              <input
-              className="profile-input"
+              <Col>
+                <Row>
+                  <label className="profile-label" htmlFor="newPassword">New Password</label>
+                </Row>
+                <Row>
+                <input
+               className="profile-input edit-input"
                 type="password"
                 id="newPassword"
                 name="newPassword"
@@ -223,25 +250,29 @@ const Profile = () => {
                 value={newPassword}
                 onChange={handleNewPasswordChange}
               />
+                </Row>
+              </Col>
             </div>
 
-            <div className="profile-button">
-              <button type="button" onClick={handleCancel}>
-                Cancel
-              </button>
+            <Row>
+              <div className="profile-button">
+                <button type="button" onClick={handleCancel}>
+                  Cancel
+                </button>
 
-              <button type="submit" className="profile-save-button">
-                Save Changes
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
+                <button type="submit" className="profile-save-button">
+                  Save Changes
+                </button>
+              </div>
+            </Row>
+            </form>
+            </Row>
+          </Col>
+        </Row>
+      </Col>
+    </Row>
     </Layout>
-    
+  
   );
 };
-
 export default Profile;
