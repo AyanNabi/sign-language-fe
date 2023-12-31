@@ -13,9 +13,6 @@ const Subscribe = () => {
                     <h1>What's inside?</h1>
                     <h1>Get on the List!</h1>
                 </MDBCol>
-
-             
-
                 <MDBCol md='5' size='12' className='mb-4 mb-md-0'>
                    <MDBInput type='text' id='form5Example2' label='Email address' />
                  </MDBCol>

@@ -5,7 +5,7 @@ import Layout from "../components/Layout/layout";
 
 export const LogIn = () => {
   return (
-<div className="container">
+    <div className="container">
       <div className="frame">
         <div className="form-container">
           <h2>Login</h2>

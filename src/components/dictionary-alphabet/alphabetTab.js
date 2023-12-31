@@ -4,12 +4,10 @@ import { Flex } from 'antd';
 import { Col, Row } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  { useState, useEffect } from "react";
-import './alphabet.css'
 import { Link } from 'react-router-dom';
-import CategoryWords from '../../pages/categoryWords';
+import './alphabet.css'
 const { TabPane } = Tabs;
 
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 const CustomCard = ({ title, content }) => (
   <Card className='custom-card' title={title} style={{ width: 300 }}>
@@ -22,20 +20,19 @@ const CustomAllCategoryCard = ({ id, content, subcontent }) => (
     <p className="cusom-card-title">{content}</p>
     <p className="cusom-card-subtitle">{subcontent}</p>
     <FontAwesomeIcon icon="fa-solid fa-bag-shopping" />
-
   </Card>
 );
 
 const AlphabetTab = () => {
   const alphabet = ['A', 'B', 'C', 'Ç', 'D', 'E', 'Ə', 'F', 'G', 'Ğ', 'H', 'X', 'I', 'İ', 'J', 'K', 'Q', 'L', 'M', 'N', 'O','Ö', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
- 
   const url = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/categories`;
-
   const url2 = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/sentences`;
 
 
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
 
 
   useEffect(() => {
@@ -50,11 +47,8 @@ const AlphabetTab = () => {
 
         if (response.ok) {
           const responseData = await response.json();
-          console.log(responseData);
-          setData(responseData); // Update the data state with the array of flights
-          console.log("ugurludur");
+          setData(responseData); 
         } else {
-          console.log("ugurlu deyil");
           console.error('API error:', response.statusText);
         }
       } catch (error) {
@@ -62,9 +56,9 @@ const AlphabetTab = () => {
       }
     };
     fetchCategories();
-  }, []); // Add an empty dependency array here
+  }, []); 
 
-
+  
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -77,41 +71,54 @@ const AlphabetTab = () => {
 
         if (response.ok) {
           const responseData = await response.json();
-          console.log(responseData);
-          setData2(responseData); // Update the data state with the array of flights
-          console.log("ugurludur");
+          setData2(responseData); 
         } else {
-          console.log("ugurlu deyil");
           console.error('API error:', response.statusText);
         }
       } catch (error) {
         console.error('Fetch error:', error);
+      }finally {
+        setIsLoading(false);
       }
     };
     fetchCategories();
-  }, []); // Add an empty dependency array here
-
+  }, [url]);
 
 
   return (
     <div className='body-margin'>
       <Tabs  style={{ justifyContent: 'center' }} defaultActiveKey="1">
+      
         <TabPane id='all-categories-tab' tab="All Categories" key="1">
         <div >
             <Flex gap="small" vertical>
-              <Row gutter={[16, 16]}>
-              {data.map((category, index) => (
-                <Col key={index} xs={{ span: 12 }} sm={{ span: 8 }} md={{ span: 8 }} lg={{ span: 4 }}>
-                  <Link to={`/category/${category.id}/words`}>
-                    <CustomAllCategoryCard id={category.id} content={category.name} subcontent={'240 jest'} />
-                  </Link>
-                </Col>
-              ))}
-              </Row>
+            <div>
+              {isLoading ? (
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
+              <div className="three-body">
+                <div className="three-body__dot"></div>
+                <div className="three-body__dot"></div>
+                <div className="three-body__dot"></div>
+              </div>
+             </div>
+                
+                ) : (
+                <Row gutter={[16, 16]}>
+                    {data.map((category, index) => (
+                      <Col key={index} xs={{ span: 12 }} sm={{ span: 8 }} md={{ span: 8 }} lg={{ span: 4 }}>
+                        <Link to={`/category/${category.id}/words`}>
+                          <CustomAllCategoryCard id={category.id} content={category.name} subcontent={'240 jest'} />
+                        </Link>
+                      </Col>
+                    ))}
+                </Row>
+            
+          
+                )}
+             </div>
             </Flex>
           </div>
         </TabPane>
-
 
         <TabPane id='alphabet-tab' tab="Alphabet" key="2">
           <div >
@@ -153,11 +160,9 @@ const AlphabetTab = () => {
               <Row gutter={[16, 16]}>
                 {alphabet.map((letter, index) => (
                   <Col key={index} xs={{ span: 12 }} sm={{ span: 12 }} md={{ span:  8}} lg={{ span: 6 }}>
-                  
                    <Link to={`/category/:categoryId/words/:wordId`}>
-                   <CustomCard className="sentences-card" content="word"/>
+                     <CustomCard className="sentences-card" content="word"/>
                     </Link>
-                  
                   </Col>
                 ))}
               </Row>

@@ -4,11 +4,11 @@ import Word from '../components/unique-word/word'
 import { useParams } from 'react-router-dom'
 
 const UniquePage = () => {
-  const { word } = useParams();
+  const { categoryId, wordId } = useParams();
 
   return (
    <Layout>
-    <Word element={word} />
+    <Word categoryId={categoryId} wordId={wordId} />
    </Layout>
   )
 }

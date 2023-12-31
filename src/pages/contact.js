@@ -7,12 +7,7 @@ import { Col, Row } from 'antd';
 export default function Contact() {
   return (
     <Layout>
-      {/* <>
-      <Row>
-      <Col span={12}>col-12</Col>
-      <Col span={12}>col-12</Col>
-    </Row>
-      </> */}
+    
       <section>
 <div className="contact-container">
 <div className="contactInfo">

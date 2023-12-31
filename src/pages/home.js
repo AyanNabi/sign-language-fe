@@ -14,7 +14,7 @@ import Subscribe from '../components/footer-component/subscribe'
           <AboutSlider></AboutSlider>
           <MeetTeamSlider></MeetTeamSlider>
           <Colloborations></Colloborations>
-<Subscribe></Subscribe>
+          <Subscribe></Subscribe>
         
         </Layout>
         

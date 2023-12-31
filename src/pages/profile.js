@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPen,
-  faPenToSquare,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
+import {faPen, faPenToSquare,faArrowRight,} from "@fortawesome/free-solid-svg-icons";
+import { Col, Row, Button, Form, Input, message, Space } from "antd";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../components/Layout/layout";
-
 import axios from "axios";
 import "../assets/profile.css";
-import { Col, Row, Button, Form, Input, message, Space } from "antd";
 
 const Profile = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -42,7 +37,6 @@ const Profile = () => {
 
   useEffect(() => {
     const cachedPhoto = localStorage.getItem("profilePhoto");
-
     if (cachedPhoto) {
       setSelectedFile(
         new File([cachedPhoto], "profilePhoto", { type: "image/png" })

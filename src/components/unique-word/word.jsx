@@ -5,13 +5,10 @@ import  { useState, useEffect } from "react";
 import { Flex} from 'antd';
 import { Link } from 'react-router-dom';
 import {  Button, Space, Menu } from 'antd';
-import { HeartOutlined, SaveOutlined, RocketOutlined, DownloadOutlined } from '@ant-design/icons';
+import { HeartOutlined, SaveOutlined, DownloadOutlined } from '@ant-design/icons';
+import Breadcramb from '../breadcramb';
 
 import '../unique-word/uniqueWord.css'
-
-
-// const { Meta } = Card;
-
 
 
 const CustomCountriesCard = ({  content }) => (
@@ -48,7 +45,7 @@ const CustomCountriesCard = ({  content }) => (
 
   
 
-const word = ({element}) => {
+const Word = ({categoryId, wordId}) => {
   const menu = (
     <Menu >
       {items.map(item => (
@@ -57,99 +54,156 @@ const word = ({element}) => {
     </Menu>
   ); 
 
-  // const url = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${element.category_id}/words/${element.id}`;
+  const url = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${categoryId}/words/${wordId}`;
+  
+  
+  const [wordData, setWordData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  const urlCategory = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${categoryId}`;
+  const [categoryData, setCategoryData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(urlCategory, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
-  // const [data, setData] = useState([]);
+        if (response.ok) {
+          const responseData = await response.json();
+          setCategoryData(responseData);
+          console.log(categoryData);
+        } else {
+          console.error('API error:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Fetch error:', error);
+      } 
+    };
 
-  // useEffect(() => {
-  //   const fetchCategories = async () => {
-  //     try {
-  //       const response = await fetch(url, {
-  //         method: 'GET',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //       });
+    // Call the fetchData function
+    fetchData();
+  }, [url]); // Include url as a dependency to trigger fetch when url changes
 
-  //       if (response.ok) {
-  //         const responseData = await response.json();
-  //         setData(responseData); 
-  //         console.log(data);
-  //       } else {
-  //         console.error('API error:', response.statusText);
-  //       }
-  //     } catch (error) {
-  //       console.error('Fetch error:', error);
-  //     }
-  //   };
-  //   fetchCategories();
-  // }, []); 
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          const responseData = await response.json();
+          setWordData(responseData);
+        } else {
+          console.error('API error:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Fetch error:', error);
+      } finally {
+        // Set loading to false once data is fetched (success or error)
+        setIsLoading(false);
+      }
+    };
+
+    // Call the fetchData function
+    fetchData();
+  }, [url]); // Include url as a dependency to trigger fetch when url changes
+
 
 
   
   return (
     <>
    
-    <Row style={{display:"flex" , justifyContent:"center"}} >
-      <Col style={{display:"flex" , justifyContent:"center",width: 240}} xs={24} sm={24} md={12} lg={12} xl={6}>
-            <Card 
-            hoverable
-            style={{ width: 300 }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        >
-           <div style={{display:"flex"}}>
-           <Button type="primary" style={{ marginRight: "34px" }}><DownloadOutlined /> Download File </Button>
-            <Space>
-            <Button type="default" icon={<SaveOutlined />} /> {/* Save */}
-            <Button type="default" icon={<HeartOutlined />} /> {/* Like (Heart) */}
-           
-        
-   
-                  
-        </Space>
-           </div>
-        </Card>
-      </Col>
-      <Col xs={24} sm={24} md={24} lg={12} xl={6}>
-      <Card id="unique-word-def" style={{ textAlign: "center" }} title={element} bordered={false}>
-       Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste commodi necessitatibus eaque temporibus a unde sit laborum vitae enim qui possimus eius, quibusdam, nisi quos voluptatum similique dicta, optio atque dolor consectetur dignissimos ducimus placeat magni? Sed et, similique possimus dignissimos soluta, doloribus reprehenderit hic rerum laboriosam tempore, vel iste quos perspiciatis ab reiciendis a quidem sequi nemo qui fugit voluptas dolore? Perferendis minima tenetur labore ut ea culpa sint, praesentium quod alias deserunt consectetur iste ex nihil, rerum voluptatum necessitatibus, illo quasi modi? Magni est expedita, corporis officia earum suscipit itaque, enim deserunt quaerat deleniti consequatur excepturi natus veniam!
-      </Card>
-      </Col>
-      <Col xs={24} sm={24} md={24} lg={12} xl={6}>
 
-       <p style={{textAlign:"center", fontSize:"15px", color: "#2b2676"}}><b >Relevant Words</b></p> 
-         <div style={{ height: '400px', overflowY: 'auto', overflowX: 'hidden' }}>
-            <Flex gap="small" vertical>
-              <Row justify="center"  gutter={[16, 16]}>
-
-              <Col  className='card-col' key={1} xs={{ span: 24 }}  >
-
-              <Link to={`/dictionary/word1`}>
-              <CustomCountriesCard content={'word1'} /> 
-                    </Link>
-
-          
-              </Col>
-                
-              <Col  className='card-col' key={2} xs={{ span: 24 }}>
-              <Link to={`/dictionary/word2`}>
-              <CustomCountriesCard content={'word2'} /> 
-                    </Link>
-              </Col>
-                
+      <div >
+      {isLoading ? (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
+    <div className="three-body">
+      <div className="three-body__dot"></div>
+      <div className="three-body__dot"></div>
+      <div className="three-body__dot"></div>
+    </div>
+  </div>
+      ) : (
+        <div >
+            <Breadcramb
+              categoryId={categoryData.id}
+              categoryName={categoryData.name}
+              wordId={wordData.id}
+              wordName={wordData.word_name}
+            />
+           <Row className='my-4' style={{display:"flex" , justifyContent:"center"}} >
+        <Col style={{display:"flex" , justifyContent:"center",width: 240}} xs={24} sm={24} md={12} lg={12} xl={6}>
+              <Card 
+              hoverable
+              style={{ width: 300 }}
+              cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+          >
+            <div style={{display:"flex"}}>
+            <Button type="primary" style={{ marginRight: "34px" }}><DownloadOutlined /> Download File </Button>
+              <Space>
+              <Button type="default" icon={<SaveOutlined />} /> {/* Save */}
+              <Button type="default" icon={<HeartOutlined />} /> {/* Like (Heart) */}
             
-         
-              </Row>
-            </Flex>
-          </div>
-
-
-      </Col>
-    </Row>
+          
     
-  
+                    
+          </Space>
+            </div>
+          </Card>
+        </Col>
+        <Col xs={24} sm={24} md={24} lg={12} xl={6}>
+        <Card id="unique-word-def" style={{ textAlign: "center" }} title={wordData.word_name} bordered={false}>
+        <div dangerouslySetInnerHTML={{ __html: wordData.word_desc }} />
+        </Card>
+        </Col>
+        <Col xs={24} sm={24} md={24} lg={12} xl={6}>
+
+        <p style={{textAlign:"center", fontSize:"15px", color: "#2b2676"}}><b >Relevant Words</b></p> 
+          <div style={{ height: '400px', overflowY: 'auto', overflowX: 'hidden' }}>
+              <Flex gap="small" vertical>
+                <Row justify="center"  gutter={[16, 16]}>
+
+                <Col  className='card-col' key={1} xs={{ span: 24 }}  >
+
+                <Link to={`/dictionary/word1`}>
+                <CustomCountriesCard content={'word1'} /> 
+                      </Link>
+
+            
+                </Col>
+                  
+                <Col  className='card-col' key={2} xs={{ span: 24 }}>
+                <Link to={`/dictionary/word2`}>
+                <CustomCountriesCard content={'word2'} /> 
+                      </Link>
+                </Col>
+                  
+              
+          
+                </Row>
+              </Flex>
+            </div>
+
+
+        </Col>
+          </Row>
+
+        </div>
+      )}
+    </div>
   </>
   )
 }
 
-export default word
+export default Word
