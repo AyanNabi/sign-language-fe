@@ -89,19 +89,19 @@ const AllCategoryWords = ({element}) => {
     <Flex gap="small" vertical>
     <div>
       {isLoading ? (
- <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
- <div className="three-body">
-   <div className="three-body__dot"></div>
-   <div className="three-body__dot"></div>
-   <div className="three-body__dot"></div>
- </div>
-</div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
+        <div className="three-body">
+          <div className="three-body__dot"></div>
+          <div className="three-body__dot"></div>
+          <div className="three-body__dot"></div>
+        </div>
+        </div>
       
       ) : (
         <div >
            <Breadcramb 
               categoryId={categoryData.id}
-              categoryName={categoryData.name}
+              categoryName={categoryData.category_name}
            
             />
             <Row className='my-3' gutter={[16, 16]}>

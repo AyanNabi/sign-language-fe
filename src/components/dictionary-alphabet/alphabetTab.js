@@ -107,7 +107,7 @@ const AlphabetTab = () => {
                     {data.map((category, index) => (
                       <Col key={index} xs={{ span: 12 }} sm={{ span: 8 }} md={{ span: 8 }} lg={{ span: 4 }}>
                         <Link to={`/category/${category.id}/words`}>
-                          <CustomAllCategoryCard  id={category.id} content={category.name} subcontent={'240 jest'} />
+                          <CustomAllCategoryCard  id={category.id} content={category.name} subcontent={`${category.words_count} jest`} />
                         </Link>
                       </Col>
                     ))}

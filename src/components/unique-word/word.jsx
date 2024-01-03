@@ -1,7 +1,7 @@
 import React from 'react'
+import  { useState, useEffect } from "react";
 import { Col, Row } from 'antd';
 import { Card } from 'antd';
-import  { useState, useEffect } from "react";
 import { Flex} from 'antd';
 import { Link } from 'react-router-dom';
 import {  Button, Space, Menu } from 'antd';
@@ -16,52 +16,21 @@ const CustomCountriesCard = ({  content }) => (
       <p  style={{ color: 'black' }}>{content}</p>
     </Card>
   );
-  const items = [
-    {
-      key: '1',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-          1st menu item
-        </a>
-      ),
-    },
-    {
-      key: '2',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-          2nd menu item
-        </a>
-      ),
-    },
-    {
-      key: '3',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-          3rd menu item
-        </a>
-      ),
-    },
-  ];
 
-  
 
 const Word = ({categoryId, wordId}) => {
-  const menu = (
-    <Menu >
-      {items.map(item => (
-        <Menu.Item key={item.key}>{item.label}</Menu.Item>
-      ))}
-    </Menu>
-  ); 
 
   const url = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${categoryId}/words/${wordId}`;
-  
-  
-  const [wordData, setWordData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  
   const urlCategory = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${categoryId}`;
+  const relevantWords = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${categoryId}/words`;
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [wordData, setWordData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
+  const [relevantWordsData, setRelevantWordsData] = useState([]);
+  const [filteredWordsData, setFilteredWordsData] = useState([]);
+
+//fetch category datas
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -84,61 +53,76 @@ const Word = ({categoryId, wordId}) => {
       } 
     };
 
-    // Call the fetchData function
     fetchData();
-  }, [url]); // Include url as a dependency to trigger fetch when url changes
+  }, [url]); 
 
+  // Fetch word data and relevant words data
+useEffect(() => {
+  const fetchWordAndRelevantWords = async () => {
+    try {
+      // Fetch word data
+      const wordResponse = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
+      if (wordResponse.ok) {
+        const wordDataResponse = await wordResponse.json();
+        setWordData(wordDataResponse);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url, {
+        // Fetch relevant words data using the obtained word data
+        const relevantWordsResponse = await fetch(relevantWords, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
         });
 
-        if (response.ok) {
-          const responseData = await response.json();
-          setWordData(responseData);
+        if (relevantWordsResponse.ok) {
+          const relevantWordsDataResponse = await relevantWordsResponse.json();
+          setRelevantWordsData(relevantWordsDataResponse);
+          // Filter relevant words based on word data
+          const filteredWords = relevantWordsDataResponse.filter(word => word.id !== wordDataResponse.id);
+          setFilteredWordsData(filteredWords);
         } else {
-          console.error('API error:', response.statusText);
+          console.error('API error:', relevantWordsResponse.statusText);
         }
-      } catch (error) {
-        console.error('Fetch error:', error);
-      } finally {
-        // Set loading to false once data is fetched (success or error)
-        setIsLoading(false);
+      } else {
+        console.error('API error:', wordResponse.statusText);
       }
-    };
+    } catch (error) {
+      console.error('Fetch error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    // Call the fetchData function
-    fetchData();
-  }, [url]); // Include url as a dependency to trigger fetch when url changes
-
+  // Call the combined fetchData function
+  fetchWordAndRelevantWords();
+}, [url, relevantWords]);
 
 
   
+  
   return (
     <>
-   
-
       <div >
       {isLoading ? (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
-    <div className="three-body">
-      <div className="three-body__dot"></div>
-      <div className="three-body__dot"></div>
-      <div className="three-body__dot"></div>
+      <div className="three-body">
+        <div className="three-body__dot"></div>
+        <div className="three-body__dot"></div>
+        <div className="three-body__dot"></div>
+      </div>
     </div>
-  </div>
+
       ) : (
         <div >
             <Breadcramb
               categoryId={categoryData.id}
-              categoryName={categoryData.name}
+              categoryName={categoryData.category_name}
               wordId={wordData.id}
               wordName={wordData.word_name}
             />
@@ -154,16 +138,12 @@ const Word = ({categoryId, wordId}) => {
               <Space>
               <Button type="default" icon={<SaveOutlined />} /> {/* Save */}
               <Button type="default" icon={<HeartOutlined />} /> {/* Like (Heart) */}
-            
-          
-    
-                    
           </Space>
             </div>
           </Card>
         </Col>
         <Col xs={24} sm={24} md={24} lg={12} xl={6}>
-        <Card id="unique-word-def" style={{ textAlign: "center" }} title={wordData.word_name} bordered={false}>
+        <Card id="unique-word-def" style={{ textAlign: "center" , height:"400px" }} title={wordData.word_name} bordered={false}>
         <div dangerouslySetInnerHTML={{ __html: wordData.word_desc }} />
         </Card>
         </Col>
@@ -174,28 +154,30 @@ const Word = ({categoryId, wordId}) => {
               <Flex gap="small" vertical>
                 <Row justify="center"  gutter={[16, 16]}>
 
-                <Col  className='card-col' key={1} xs={{ span: 24 }}  >
 
-                <Link to={`/dictionary/word1`}>
-                <CustomCountriesCard content={'word1'} /> 
-                      </Link>
+                {filteredWordsData.map((word) => (
+                   <Col className='card-col' key={word.id} xs={{ span: 24 }}>
+                   {word.refered_back!=null ? (
+                     <Link to={`/category/${word.category_id}/words/${word.refered_back}bax`}>
+                     <CustomCountriesCard id={word.id} content={word.word_name} />
+                   </Link>
+                   
+                   ) : word.word_name.endsWith('daktil') ? (
+                    
+                     <CustomCountriesCard  id={word.id} content={word.word_name} />
+                  
+                   ) : (
+                     <Link to={`/category/${word.category_id}/words/${word.id}`}>
+                       <CustomCountriesCard id={word.id} content={word.word_name} />
+                     </Link>
+                   )}
+                 </Col>
 
-            
-                </Col>
-                  
-                <Col  className='card-col' key={2} xs={{ span: 24 }}>
-                <Link to={`/dictionary/word2`}>
-                <CustomCountriesCard content={'word2'} /> 
-                      </Link>
-                </Col>
-                  
-              
-          
+
+              ))}
                 </Row>
               </Flex>
             </div>
-
-
         </Col>
           </Row>
 
