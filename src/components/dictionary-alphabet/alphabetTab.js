@@ -16,7 +16,7 @@ const CustomCard = ({ title, content }) => (
 );
 
 const CustomAllCategoryCard = ({ id, content, subcontent }) => (
-  <Card className='custom-card custom-all-category-card' id={id} content={content} subcontent={subcontent} style={{ width: 200 }}>
+  <Card  className='custom-card custom-all-category-card' id={id} content={content} subcontent={subcontent}  style={{ width: 200, height: 150 }}>
     <p className="cusom-card-title">{content}</p>
     <p className="cusom-card-subtitle">{subcontent}</p>
     <FontAwesomeIcon icon="fa-solid fa-bag-shopping" />
@@ -58,7 +58,7 @@ const AlphabetTab = () => {
     fetchCategories();
   }, []); 
 
-  
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -107,7 +107,7 @@ const AlphabetTab = () => {
                     {data.map((category, index) => (
                       <Col key={index} xs={{ span: 12 }} sm={{ span: 8 }} md={{ span: 8 }} lg={{ span: 4 }}>
                         <Link to={`/category/${category.id}/words`}>
-                          <CustomAllCategoryCard id={category.id} content={category.name} subcontent={'240 jest'} />
+                          <CustomAllCategoryCard  id={category.id} content={category.name} subcontent={'240 jest'} />
                         </Link>
                       </Col>
                     ))}

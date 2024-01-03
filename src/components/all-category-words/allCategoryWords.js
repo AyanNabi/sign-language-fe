@@ -104,17 +104,26 @@ const AllCategoryWords = ({element}) => {
               categoryName={categoryData.name}
            
             />
-
-          <Row className='my-3'  gutter={[16, 16]}>
-             {data.map((word) => (
-  
-              <Col  className='card-col' key={1} xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }} lg={{ span: 6 }}>
-                <Link to={`/category/${word.category_id}/words/${word.id}`}>
-                        <CustomCountriesCard id={word.id} content={word.word_name}  />
-                      </Link>
+            <Row className='my-3' gutter={[16, 16]}>
+              {data.map((word) => (
+                <Col className='card-col' key={word.id} xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }} lg={{ span: 6 }}>
+                  {word.refered_back!=null ? (
+                    <Link to={`/category/${word.category_id}/words/${word.refered_back}`}>
+                    <CustomCountriesCard id={word.id} content={word.word_name} />
+                  </Link>
+                  
+                  ) : word.word_name.endsWith('daktil') ? (
+                   
+                    <CustomCountriesCard  id={word.id} content={word.word_name} />
+                 
+                  ) : (
+                    <Link to={`/category/${word.category_id}/words/${word.id}`}>
+                      <CustomCountriesCard id={word.id} content={word.word_name} />
+                    </Link>
+                  )}
                 </Col>
-                ))}
-        </Row>
+              ))}
+            </Row>
         </div>
       )}
     </div>
