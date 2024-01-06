@@ -2,14 +2,14 @@ import React from 'react'
 import { MDBBreadcrumb, MDBBreadcrumbItem, MDBContainer, MDBNavbar } from 'mdb-react-ui-kit';
 
 
-const Breadcramb = ({categoryId, categoryName, wordId, wordName}) => {
+const Breadcramb = ({topcategoryId,topCategoryName,categoryId, categoryName, wordId, wordName}) => {
   return (
     <div >
          <MDBNavbar  expand='lg' light bgColor='light'>
       <MDBContainer  fluid>
         <MDBBreadcrumb>
           <MDBBreadcrumbItem>
-            <a style={{fontSize:"16px"}} href='#'>category name</a>
+            <a style={{fontSize:"16px"}} href={`/dictionary/${topCategoryName}`}>{topCategoryName}</a>
           </MDBBreadcrumbItem>
           <MDBBreadcrumbItem>
           <a style={{fontSize:"16px"}} href={`/category/${categoryId}/words`}>{categoryName}</a>

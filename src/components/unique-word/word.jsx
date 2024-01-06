@@ -1,13 +1,8 @@
-import React from 'react'
-import  { useState, useEffect } from "react";
-import { Col, Row } from 'antd';
-import { Card } from 'antd';
-import { Flex} from 'antd';
+import  {React, useState, useEffect } from "react";
+import { Col, Row, Card,Flex,Button, Space, Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import {  Button, Space, Menu } from 'antd';
 import { HeartOutlined, SaveOutlined, DownloadOutlined } from '@ant-design/icons';
 import Breadcramb from '../breadcramb';
-
 import '../unique-word/uniqueWord.css'
 
 
@@ -20,15 +15,15 @@ const CustomCountriesCard = ({  content }) => (
 
 const Word = ({categoryId, wordId}) => {
 
-  const url = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${categoryId}/words/${wordId}`;
+  const urlWord = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${categoryId}/words/${wordId}`;
   const urlCategory = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${categoryId}`;
   const relevantWords = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${categoryId}/words`;
-  const [isLoading, setIsLoading] = useState(true);
 
+  const [isLoading, setIsLoading] = useState(true);
   const [wordData, setWordData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
-  const [relevantWordsData, setRelevantWordsData] = useState([]);
-  const [filteredWordsData, setFilteredWordsData] = useState([]);
+  const [randomFive, setRandomFive] = useState([]);
+
 
 //fetch category datas
   useEffect(() => {
@@ -44,7 +39,6 @@ const Word = ({categoryId, wordId}) => {
         if (response.ok) {
           const responseData = await response.json();
           setCategoryData(responseData);
-          console.log(categoryData);
         } else {
           console.error('API error:', response.statusText);
         }
@@ -54,24 +48,22 @@ const Word = ({categoryId, wordId}) => {
     };
 
     fetchData();
-  }, [url]); 
+  }, [urlWord]); 
 
   // Fetch word data and relevant words data
 useEffect(() => {
   const fetchWordAndRelevantWords = async () => {
     try {
       // Fetch word data
-      const wordResponse = await fetch(url, {
+      const wordResponse = await fetch(urlWord, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
       if (wordResponse.ok) {
         const wordDataResponse = await wordResponse.json();
         setWordData(wordDataResponse);
-
         // Fetch relevant words data using the obtained word data
         const relevantWordsResponse = await fetch(relevantWords, {
           method: 'GET',
@@ -81,11 +73,12 @@ useEffect(() => {
         });
 
         if (relevantWordsResponse.ok) {
-          const relevantWordsDataResponse = await relevantWordsResponse.json();
-          setRelevantWordsData(relevantWordsDataResponse);
           // Filter relevant words based on word data
+          const relevantWordsDataResponse = await relevantWordsResponse.json();
           const filteredWords = relevantWordsDataResponse.filter(word => word.id !== wordDataResponse.id);
-          setFilteredWordsData(filteredWords);
+          const randomFive = chooseRandomElements(filteredWords, 5);
+          setRandomFive(randomFive);
+
         } else {
           console.error('API error:', relevantWordsResponse.statusText);
         }
@@ -97,14 +90,19 @@ useEffect(() => {
     } finally {
       setIsLoading(false);
     }
+
+  };
+
+  // Function to choose random elements from the array
+  const chooseRandomElements = (arr, count) => {
+    const shuffled = arr.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
   };
 
   // Call the combined fetchData function
   fetchWordAndRelevantWords();
-}, [url, relevantWords]);
+}, [urlWord, relevantWords]);
 
-
-  
   
   return (
     <>
@@ -155,7 +153,7 @@ useEffect(() => {
                 <Row justify="center"  gutter={[16, 16]}>
 
 
-                {filteredWordsData.map((word) => (
+                {randomFive.map((word) => (
                    <Col className='card-col' key={word.id} xs={{ span: 24 }}>
                    {word.refered_back!=null ? (
                      <Link to={`/category/${word.category_id}/words/${word.refered_back}bax`}>

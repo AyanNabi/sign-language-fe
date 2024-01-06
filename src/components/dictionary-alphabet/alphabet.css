@@ -1,4 +1,4 @@
-.custom-card-text{
+/* .custom-card-text{
     color:white;
     font-size:20px;
     margin: 0px;
@@ -21,7 +21,7 @@
 .custom-card{
     background-color: 
     #bfbce8;
-}
+} */
 
 .ant-tabs-nav-wrap{
     justify-content: center !important;
@@ -59,7 +59,7 @@
 :where(.css-dev-only-do-not-override-2q8sxy).ant-tabs-top >.ant-tabs-nav .ant-tabs-ink-bar, :where(.css-dev-only-do-not-override-2q8sxy).ant-tabs-bottom >.ant-tabs-nav .ant-tabs-ink-bar, :where(.css-dev-only-do-not-override-2q8sxy).ant-tabs-top >div>.ant-tabs-nav .ant-tabs-ink-bar, :where(.css-dev-only-do-not-override-2q8sxy).ant-tabs-bottom >div>.ant-tabs-nav .ant-tabs-ink-bar {
     height: 3px;
 }
-#countries-tab .custom-card{
+/* #countries-tab .custom-card{
     border:1px solid  black;
 }
 
@@ -69,7 +69,7 @@
     color: #2b2676 !important;
     border-radius: 7px !important;
     text-align: center;
-}
+} */
 
 :where(.css-dev-only-do-not-override-2q8sxy).ant-tabs .ant-tabs-tab {
   
@@ -86,11 +86,11 @@
 .big-card-body .ant-card-body{
     padding: 10px !important;
 }
-
+/* 
 .custom-card{
     padding: 8px !important;
     text-align: center;
-}
+} */
 .card-col{
     display: flex !important;
     justify-content: center !important;
@@ -147,15 +147,14 @@
 }
 
 @media screen and (min-width: 1100px) and (max-width: 1300px) {
-      #rc-tabs-1-panel-2  .custom-card,   
-      #rc-tabs-1-panel-3  .custom-card
+      #rc-tabs-1-panel-2  .custom-card-alphabet,
       #rc-tabs-1-panel-4  .custom-card {
         padding: 8px !important;
         width: 170px !important;
     }
   }
 @media screen and (min-width: 991px) and (max-width: 1100px) {
-    #rc-tabs-1-panel-2  .custom-card,   
+    #rc-tabs-1-panel-2  .custom-card-alphabet,   
     #rc-tabs-1-panel-3  .custom-card
     #rc-tabs-1-panel-4  .custom-card {
       padding: 8px !important;
@@ -164,7 +163,7 @@
 }
 
   @media screen and (min-width: 760px) and (max-width: 990px) {
-      #rc-tabs-1-panel-2  .custom-card,   
+      #rc-tabs-1-panel-2  .custom-card-alphabet,   
       #rc-tabs-1-panel-3  .custom-card
       #rc-tabs-1-panel-4  .custom-card {
         width: 170px !important;
@@ -179,59 +178,59 @@
   /* 2nd tabulation resonsivenes */
   
   @media screen and (min-width: 1300px) and (max-width: 1902px) {
-    #rc-tabs-1-panel-2  .custom-card {
+    #rc-tabs-1-panel-2  .custom-card-alphabet {
    width:150px !important;
   }
   }
 
   @media screen and (min-width: 1204px) and (max-width: 1321px) {
-    #rc-tabs-1-panel-2  .custom-card {
+    #rc-tabs-1-panel-2  .custom-card-alphabet {
    width:135px !important;
   }
   }
   @media screen and (min-width: 1061px) and (max-width: 1204px) {
-    #rc-tabs-1-panel-2  .custom-card {
+    #rc-tabs-1-panel-2  .custom-card-alphabet {
    width:118px !important;
   }
   }
   @media screen and (min-width: 991px) and (max-width: 993px) {
-    #rc-tabs-1-panel-2  .custom-card {
+    #rc-tabs-1-panel-2  .custom-card-alphabet {
    width:105px !important;
   }
   }
 
   @media screen and (min-width: 760px) and (max-width: 991px) {
-    #rc-tabs-1-panel-2  .custom-card {
+    #rc-tabs-1-panel-2  .custom-card-alphabet {
    width:272px !important;
   }
   }
   
   @media screen and (min-width: 842px) and (max-width: 942px) {
-    #rc-tabs-1-panel-2  .custom-card {
+    #rc-tabs-1-panel-2  .custom-card-alphabet {
    width:233px !important;
   }
   }
   
   @media screen and (min-width: 680px) and (max-width: 842px) {
-    #rc-tabs-1-panel-2  .custom-card {
+    #rc-tabs-1-panel-2  .custom-card-alphabet {
    width:183px !important;
   }
   }
   
   @media screen and (min-width: 604px) and (max-width: 682px) {
-    #rc-tabs-1-panel-2  .custom-card {
+    #rc-tabs-1-panel-2  .custom-card-alphabet {
    width:159px !important;
   }
   }
   
   @media screen and (min-width: 575px) and (max-width: 604px) {
-    #rc-tabs-1-panel-2  .custom-card {
+    #rc-tabs-1-panel-2  .custom-card-alphabet {
    width:146px !important;
   }
   }
 
   @media screen and (min-width: 500px) and (max-width: 575px) {
-    #rc-tabs-1-panel-2  .custom-card {
+    #rc-tabs-1-panel-2  .custom-card-alphabet {
    width:167px !important;
   }
   }
@@ -403,4 +402,144 @@
      opacity: 0.8;
     }
    }
+
+
+
+   /* //circle la olaon */
    
+   .wallet {
+    --bg-color: #ba9aed;
+    --bg-color-light: #F0E7FF;
+    --text-color-hover: #fff;
+    --box-shadow-color: rgba(206, 178, 252, 0.48);
+  }
+  
+  .custom-card-alphabet {
+    width: 200px;
+    height: 150px;
+    background: #efeaf7;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* box-shadow: 0 14px 26px rgba(0,0,0,0.04); */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: all 0.4s ease-out;
+    text-decoration: none;
+  }
+  
+  .custom-card-alphabet:hover {
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    box-shadow: 0 24px 36px rgba(0,0,0,0.11),
+      0 24px 46px var(--box-shadow-color);
+
+  }
+  .custom-card-alphabet:hover .custom-card-alphabet-content
+  {
+  color: black !important;
+  }
+  .custom-card-alphabet:hover .day-text
+  {
+  color: white !important;
+  }
+
+ 
+  .custom-card-alphabet:hover .overlay {
+    transform: scale(10) translateZ(0);
+  }
+  
+  .custom-card-alphabet:hover .circle {
+    border-color: var(--bg-color-light);
+    background: var(--bg-color);
+  }
+  
+  .custom-card-alphabet:hover .circle:after {
+    background: var(--bg-color-light);
+  }
+ 
+  .card:active {
+    transform: scale(1) translateZ(0);
+    box-shadow: 0 15px 24px rgba(0,0,0,0.11),
+      0 15px 24px var(--box-shadow-color);
+  }
+  
+  .custom-card-alphabet .custom-card-alphabet-content {
+    font-size: 17px;
+    color: white;
+    margin-top: 30px;
+    z-index: 1000;
+    transition: color 0.3s ease-out;
+  }
+  
+  .circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #cebbed;
+    /* border: 3px solid var(--bg-color); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease-out;
+  
+  }
+  
+  .circle:after {
+    content: "";
+    width: 80px;
+    height: 80px;
+    display: block;
+    position: absolute;
+    background: var(--bg-color);
+    border-radius: 50%;
+    transition: opacity 0.4s ease-out;
+  }
+  
+  .circle svg {
+    z-index: 10000;
+    transform: translateZ(0);
+  }
+  
+  .overlay {
+    width: 30px;
+    position: absolute;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    top: 55px;
+    left: 55px;
+    z-index: 0;
+    transition: transform 0.4s ease-out;
+  }
+
+  /* circle olan */
+
+
+  .custom-card {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    display: flex ;
+    justify-content: center;
+ align-items: center;
+   text-align: center;
+    background: linear-gradient(109.6deg, rgb(121, 121, 216) 11.2%, rgb(172, 165, 228) 100.2%);
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 15px;
+    color:white;
+    cursor: pointer;
+    transition:  0.4s ease-out;
+  }
+  
+  .custom-card:hover{
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  }
+  
+  
+ 

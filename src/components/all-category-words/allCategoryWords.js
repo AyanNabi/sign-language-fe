@@ -5,17 +5,21 @@ import { Col, Row } from 'antd';
 import  { useState, useEffect } from "react";
 import '../dictionary-alphabet/alphabet.css'
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Breadcramb from '../breadcramb';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
-const CustomCountriesCard = ({ id, content }) => (
-    <Card className='countries-custom-card' id={id} content={content} style={{ width: 300 }}>
+const CustomCountriesCard = ({ id, content,catName }) => (
+    <Card className='countries-custom-card' id={id} content={content} catName={catName} style={{ width: 300 }}>
       <p  style={{ color: 'black' }}>{content}</p>
     </Card>
   );
 
 const AllCategoryWords = ({element}) => {
+  const { pathname } = useLocation();
+
+
 
   const url = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/category/${element}/words`;
 
@@ -99,26 +103,56 @@ const AllCategoryWords = ({element}) => {
       
       ) : (
         <div >
+{/*           
            <Breadcramb 
+
               categoryId={categoryData.id}
               categoryName={categoryData.category_name}
            
-            />
+              
+            /> */}
+          {pathname.includes('/category') ? (
+          <Breadcramb 
+          topCategoryName="All Categories"
+          categoryId={categoryData.id}
+          categoryName={categoryData.category_name}
+          />
+      ) : pathname.includes('/sentence') ? (
+        <Breadcramb 
+        topCategoryName="Sentences"
+        categoryId={categoryData.id}
+        categoryName={categoryData.category_name}
+        />
+       
+      ) : pathname.includes('/alphabet') ? (
+        <Breadcramb 
+        topCategoryName="Alphabet"
+        categoryId={categoryData.id}
+        categoryName={categoryData.category_name}
+        />
+      ) : (
+        // Render content when the path does not include "/category", "/sentence", or "/alphabet"
+        <div>
+          <h1>Not a Category, Sentence, or Alphabet Page</h1>
+          {/* Other content specific to when the path does not include "/category", "/sentence", or "/alphabet" */}
+        </div>
+      )}
+      
             <Row className='my-3' gutter={[16, 16]}>
               {data.map((word) => (
                 <Col className='card-col' key={word.id} xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }} lg={{ span: 6 }}>
                   {word.refered_back!=null ? (
                     <Link to={`/category/${word.category_id}/words/${word.refered_back}`}>
-                    <CustomCountriesCard id={word.id} content={word.word_name} />
+                    <CustomCountriesCard catName="Ayan" id={word.id} content={`${word.word_name} (refer_name)`} />
                   </Link>
                   
                   ) : word.word_name.endsWith('daktil') ? (
                    
-                    <CustomCountriesCard  id={word.id} content={word.word_name} />
+                    <CustomCountriesCard  catName="Ayan" id={word.id} content={word.word_name} />
                  
                   ) : (
                     <Link to={`/category/${word.category_id}/words/${word.id}`}>
-                      <CustomCountriesCard id={word.id} content={word.word_name} />
+                      <CustomCountriesCard catName="Ayan" id={word.id} content={word.word_name} />
                     </Link>
                   )}
                 </Col>

@@ -4,41 +4,99 @@ import { Flex } from 'antd';
 import { Col, Row } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './alphabet.css'
 const { TabPane } = Tabs;
 
 
-const CustomCard = ({ title, content }) => (
-  <Card className='custom-card' title={title} style={{ width: 300 }}>
-    <p className="custom-card-text">{content}</p>
-  </Card>
+const CustomCard = ({ title, content, subcontent }) => (
+
+  //  <Card  className='custom-card-alphabet '  content={content} subcontent={subcontent}  style={{ width: 200, height: 150 }}>
+  //   <p className="custom-card-alphabet-text">{content}</p>
+  //   <p style={{fontSize:"14px"}}  className="cusom-card-subtitle">{subcontent}</p>
+  // </Card>
+
+  // <Card className='custom-card-alphabet' title={title} style={{ width: 300, height:"90px" }}>
+  //   <p className="custom-card-alphabet-text">{content}</p>
+  //   <p style={{fontSize:"14px"}}  className="cusom-card-subtitle">{subcontent}</p>
+  // </Card>
+  // // circle la olan 
+    <div >
+    <a className="custom-card-alphabet wallet"  href="#">
+      <div className="overlay"></div>
+      <div className="circle">
+      <p className='custom-card-alphabet-content' style={{margin:"0px"}} >{content}</p>
+      </div>
+      <p style={{fontSize:"12px", margin:"0px" }} className="day-text">{subcontent}</p>
+
+    
+      
+    </a>
+    </div>
 );
 
-const CustomAllCategoryCard = ({ id, content, subcontent }) => (
-  <Card  className='custom-card custom-all-category-card' id={id} content={content} subcontent={subcontent}  style={{ width: 200, height: 150 }}>
-    <p className="cusom-card-title">{content}</p>
-    <p className="cusom-card-subtitle">{subcontent}</p>
-    <FontAwesomeIcon icon="fa-solid fa-bag-shopping" />
-  </Card>
+
+const CustomAllCategoryCard = ({ id, content, subcontent,  }) => (
+  // <Card  className='custom-card custom-all-category-card' id={id} content={content} subcontent={subcontent}  style={{ width: 200, height: 150 }}>
+  //   <p className="cusom-card-title">{content}</p>
+  //   <p style={{fontSize:"14px"}}  className="cusom-card-subtitle">{subcontent}</p>
+  // </Card>
+
+
+
+<div className="custom-card" id={id} content={content} subcontent={subcontent} >
+    <div className="card-content">
+        <p className="content-text">
+        <span  style={{fontSize:"20px" }} >{content}</span>
+      </p>
+      <p style={{fontSize:"12px" }}  className="day-text">{subcontent}</p>
+      
+    </div>
+
+
+</div>
+
+
+
+// // circle la olan 
+// <div >
+// <a className="card wallet" href="#">
+//   <div className="overlay"></div>
+//   <div className="circle">
+//     <span>Ayan</span>
+//   </div>
+//   <p style={{margin:"0px" }} >{content}</p>
+//   <p style={{fontSize:"12px", margin:"0px" }} className="day-text">{subcontent}</p>
+// </a>
+// </div>
+
+
+
+
 );
 
-const AlphabetTab = () => {
+const AlphabetTab = ({element}) => {
+
   const alphabet = ['A', 'B', 'C', 'Ç', 'D', 'E', 'Ə', 'F', 'G', 'Ğ', 'H', 'X', 'I', 'İ', 'J', 'K', 'Q', 'L', 'M', 'N', 'O','Ö', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-  const url = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/categories`;
-  const url2 = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/sentences`;
+  const urlCategories = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/categories`;
+  const urlSentences = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/sentences`;
+  const urlAlphabet = `https://morning-plains-82582-f0e7c891044c.herokuapp.com/alphabets_summary`;
 
 
-  const [data, setData] = useState([]);
-  const [data2, setData2] = useState([]);
+
+  const [categoriesData, setCategoriesData] = useState([]);
+  const [sentencesData, setSentencesData] = useState([]);
+  const [alphabetData, setAlphabetData] = useState([]);
+
   const [isLoading, setIsLoading] = useState(true);
-
+  
 
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(url, {
+        const response = await fetch(urlCategories, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -47,7 +105,7 @@ const AlphabetTab = () => {
 
         if (response.ok) {
           const responseData = await response.json();
-          setData(responseData); 
+          setCategoriesData(responseData); 
         } else {
           console.error('API error:', response.statusText);
         }
@@ -59,10 +117,12 @@ const AlphabetTab = () => {
   }, []); 
 
 
+
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(url2, {
+        const response = await fetch(urlSentences, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -71,7 +131,7 @@ const AlphabetTab = () => {
 
         if (response.ok) {
           const responseData = await response.json();
-          setData2(responseData); 
+          setSentencesData(responseData); 
         } else {
           console.error('API error:', response.statusText);
         }
@@ -82,12 +142,57 @@ const AlphabetTab = () => {
       }
     };
     fetchCategories();
-  }, [url]);
+  }, [urlCategories]);
+
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(urlAlphabet, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          const responseData = await response.json();
+          setAlphabetData(responseData); 
+        } else {
+          console.error('API error:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
+    fetchCategories();
+  }, []); 
+
+
+
+  const [activeKey, setActiveKey] = useState("1");  // Default active key
+
+  useEffect(() => {
+    // Set the active key based on the value of the 'element' prop
+    if (element === 'All Categories') {
+      setActiveKey("1");  // "All Categories" tab key
+    } else if (element === 'Alphabet') {
+      setActiveKey("2");  // "Alphabet" tab key
+    }
+    else if (element === 'Sentences') {
+      setActiveKey("3");  // "Alphabet" tab key
+    }
+  }, [element]);
+
+  const handleTabChange = (key) => {
+    setActiveKey(key);
+  };
+
 
 
   return (
     <div className='body-margin'>
-      <Tabs  style={{ justifyContent: 'center' }} defaultActiveKey="1">
+      <Tabs  style={{ justifyContent: 'center' }}  defaultActiveKey={activeKey} activeKey={activeKey}  onChange={handleTabChange}>
       
         <TabPane id='all-categories-tab' tab="All Categories" key="1">
         <div >
@@ -104,30 +209,28 @@ const AlphabetTab = () => {
                 
                 ) : (
                 <Row gutter={[16, 16]}>
-                    {data.map((category, index) => (
+                    {categoriesData.map((category, index) => (
                       <Col key={index} xs={{ span: 12 }} sm={{ span: 8 }} md={{ span: 8 }} lg={{ span: 4 }}>
                         <Link to={`/category/${category.id}/words`}>
-                          <CustomAllCategoryCard  id={category.id} content={category.name} subcontent={`${category.words_count} jest`} />
+                          <CustomAllCategoryCard  id={category.id}  content={category.name} subcontent={`Jestlər: ${category.words_count} `} />
                         </Link>
                       </Col>
                     ))}
                 </Row>
-            
-          
                 )}
              </div>
             </Flex>
           </div>
         </TabPane>
 
-        <TabPane id='alphabet-tab' tab="Alphabet" key="2">
+        <TabPane id='alphabet-tab' tab="Alphabet" key="2" >
           <div >
             <Flex gap="small" vertical>
               <Row gutter={[16, 16]}>
-                {alphabet.map((letter, index) => (
+                {alphabetData.map((letter, index) => (
                   <Col key={index} xs={{ span: 12 }} sm={{ span: 8 }} md={{ span:  8}} lg={{ span: 3 }}>
-                    <Link to={`/dictionary/${letter}`}>
-                      <CustomCard content={letter} />
+                    <Link to={`/alphabet/${letter.letter_name}`} >
+                      <CustomCard content={letter.letter_name} subcontent={`Jestlər: ${letter.number_of_words} `}/>
                     </Link>
                   </Col>
                 ))}
@@ -154,14 +257,14 @@ const AlphabetTab = () => {
           </div>
         </TabPane> */}
 
-        <TabPane id='sentences-tab' tab="Sentences" key="4">
+        <TabPane id='sentences-tab' tab="Sentences" key="3">
           <div >
             <Flex gap="small" vertical>
               <Row gutter={[16, 16]}>
-                {alphabet.map((letter, index) => (
+                {sentencesData.map((sentence, index) => (
                   <Col key={index} xs={{ span: 12 }} sm={{ span: 12 }} md={{ span:  8}} lg={{ span: 6 }}>
                    <Link to={`/category/:categoryId/words/:wordId`}>
-                     <CustomCard className="sentences-card" content="word"/>
+                     <CustomCard className="sentences-card" content={sentence.text}/>
                     </Link>
                   </Col>
                 ))}
@@ -170,10 +273,7 @@ const AlphabetTab = () => {
           </div>
         </TabPane>
       </Tabs>
-
-
     </div>
-
   )
 }
 
