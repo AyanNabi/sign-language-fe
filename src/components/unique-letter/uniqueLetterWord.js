@@ -1,3 +1,4 @@
+
 import  {React, useState, useEffect } from "react";
 import { Col, Row, Card,Flex,Button, Space, Menu } from 'antd';
 import { Link } from 'react-router-dom';
@@ -14,7 +15,7 @@ const CustomCountriesCard = ({  content }) => (
   );
 
 
-const Word = ({categoryId, wordId}) => {
+const UniqueLetterWord = ({categoryId, wordId}) => {
   const { pathname } = useLocation();
 
 
@@ -67,7 +68,6 @@ useEffect(() => {
       if (wordResponse.ok) {
         const wordDataResponse = await wordResponse.json();
         setWordData(wordDataResponse);
-        console.log(wordData);
         // Fetch relevant words data using the obtained word data
         const relevantWordsResponse = await fetch(relevantWords, {
           method: 'GET',
@@ -185,8 +185,8 @@ useEffect(() => {
                 {randomFive.map((word) => (
                    <Col className='card-col' key={word.id} xs={{ span: 24 }}>
                    {word.refered_back!=null ? (
-                     <Link to={`/category/${word.refered_back_obj?.category_id}/words/${word.refered_back}`}>
-                     <CustomCountriesCard id={word.id} content={`${word.word_name}`} />
+                     <Link to={`/category/${word.category_id}/words/${word.refered_back}`}>
+                     <CustomCountriesCard id={word.id} content={word.word_name} />
                    </Link>
                    
                    ) : word.word_name.endsWith('daktil') ? (
@@ -215,4 +215,5 @@ useEffect(() => {
   )
 }
 
-export default Word
+export default UniqueLetterWord
+

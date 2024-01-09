@@ -1,20 +1,25 @@
 // LogIn.js
 
 import React, { useState } from "react";
-import { Row, Col, Form, Input, Button, Checkbox, message } from 'antd';
-import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
-import { auth } from '../config/firebase'; // Adjust the path based on your project structure
-import { sendPasswordResetEmail } from 'firebase/auth';
-
+import { Row, Col, Form, Input, Button, Checkbox, message } from "antd";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+} from "firebase/auth";
+import { auth } from "../config/firebase";
+import { sendPasswordResetEmail } from "firebase/auth";
+import Layout from "../components/Layout/layout";
 
 import "../assets/login.css";
 
 const LogIn = () => {
+  
   const [resetEmailSent, setResetEmailSent] = useState(false);
 
   const onFinish = async (values) => {
     const { email, password, remember } = values;
-    console.log('Received values:', values);
+    console.log("Received values:", values);
   };
 
   const signInWithGoogle = async () => {
@@ -23,9 +28,9 @@ const LogIn = () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      console.log('Google Sign In Successful!', user);
+      console.log("Google Sign In Successful!", user);
     } catch (error) {
-      console.error('Google Sign In Error:', error.message);
+      console.error("Google Sign In Error:", error.message);
     }
   };
 
@@ -34,9 +39,9 @@ const LogIn = () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      console.log('Facebook Sign In Successful!', user);
+      console.log("Facebook Sign In Successful!", user);
     } catch (error) {
-      console.error('Facebook Sign In Error:', error.message);
+      console.error("Facebook Sign In Error:", error.message);
     }
   };
 
@@ -47,28 +52,35 @@ const LogIn = () => {
       if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         await sendPasswordResetEmail(auth, email);
         setResetEmailSent(true);
-        message.success('Password reset email sent successfully! Check your email.');
+        message.success(
+          "Password reset email sent successfully! Check your email."
+        );
       } else {
-        console.log('Please enter a valid email address.');
-        message.error('Please enter a valid email address.');
+        console.log("Please enter a valid email address.");
+        message.error("Please enter a valid email address.");
       }
     } catch (error) {
-      if (error.code === 'auth/user-not-found') {
-        console.error('User with this email not found.');
-        message.error('User with this email not found. Please check your email and try again.');
+      if (error.code === "auth/user-not-found") {
+        console.error("User with this email not found.");
+        message.error(
+          "User with this email not found. Please check your email and try again."
+        );
       } else {
-        console.error('Password reset error:', error.message);
-        message.error('Password reset failed. Please check your email and try again.');
+        console.error("Password reset error:", error.message);
+        message.error(
+          "Password reset failed. Please check your email and try again."
+        );
       }
       setResetEmailSent(false);
     }
   };
-  
 
   return (
-    <div className="login-container">
+    <Layout>
+
+<div className="login-container">
       <div className="login-frame">
-        <h2 className="login-label">Login</h2>
+        <h2 className="login-heading">Login</h2>
         <Row className="form">
           <Col xs={24} sm={20} md={16} lg={12} xl={20}>
             <div className="login-form-container">
@@ -85,16 +97,19 @@ const LogIn = () => {
                   name="email"
                   rules={[
                     {
-                      type: 'email',
-                      message: 'The input is not a valid email address!',
+                      type: "email",
+                      message: "The input is not a valid email address!",
                     },
                     {
                       required: true,
-                      message: 'Please input your email!',
+                      message: "Please input your email!",
                     },
                   ]}
                 >
-                  <Input className="login-text-input" placeholder="sample@jestdili.az" />
+                  <Input
+                    className="login-text-input"
+                    placeholder="sample@jestdili.az"
+                  />
                 </Form.Item>
 
                 <Form.Item
@@ -103,16 +118,29 @@ const LogIn = () => {
                   rules={[
                     {
                       required: true,
-                      message: 'Please input your password!',
+                      message: "Please input your password!",
                     },
                   ]}
                 >
-                  <Input.Password className="login-text-input" placeholder="*******" />
+                  <Input.Password
+                    className="login-text-input"
+                    placeholder="*******"
+                  />
                 </Form.Item>
 
                 <Form.Item>
                   <div className="login-button">
-                    <Button type="primary" htmlType="submit">
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      style={{
+                        backgroundColor: "#2b2676",
+                        fontSize: 16,
+                        fontFamily: "Inter",
+                        fontWeight: "400",
+                        wordWrap: "break-word",
+                      }}
+                    >
                       Log in
                     </Button>
                   </div>
@@ -124,30 +152,56 @@ const LogIn = () => {
 
         <div className="login-checkbox-row">
           <div className="login-check-remember">
-            <Checkbox id="rememberCheckbox">Remember me</Checkbox>
+            <Checkbox className="rememberCheckbox">Remember me</Checkbox>
           </div>
           <p className="forgot-password" onClick={handleForgotPassword}>
-            Forgot Password
+            Forgot Password?
           </p>
         </div>
 
-        {resetEmailSent && (
-          <div className="reset-email-sent-message">
-          </div>
-        )}
-
+        {resetEmailSent && <div className="reset-email-sent-message"></div>}
+        <hr />
         <p>OR</p>
 
         <div className="signIn-button">
-          <Button onClick={signInWithGoogle} style={{ backgroundColor: "#f0f0f0", color: "#2b2676" }}>
+          <Button
+            onClick={signInWithGoogle}
+            style={{
+              backgroundColor: "#f0f0f0",
+              color: "#2b2676",
+              border: "1px solid #2B2676",
+              fontSize: 16,
+              fontFamily: "Inter",
+              fontWeight: "400",
+              wordWrap: "break-word",
+            }}
+          >
             Sign in with Google
           </Button>
-          <Button onClick={signInWithFacebook} style={{ backgroundColor: "#1877f2", color: "#fff" }}>
+          <Button
+            onClick={signInWithFacebook}
+            style={{
+              backgroundColor: "#1877f2",
+              color: "#fff",
+              fontSize: 16,
+              fontFamily: "Inter",
+              fontWeight: "400",
+              wordWrap: "break-word",
+            }}
+          >
             Sign in with Facebook
           </Button>
-        </div>
+
+          <p className="new-user-text" style={{ textDecoration: 'underline', cursor: 'pointer' }}
+          //  onClick={}
+           >
+      New User? Create an account
+    </p>
+            </div>
       </div>
     </div>
+    </Layout>
+   
   );
 };
 

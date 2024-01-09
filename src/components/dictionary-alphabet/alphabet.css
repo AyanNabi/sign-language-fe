@@ -408,7 +408,8 @@
    /* //circle la olaon */
    
    .wallet {
-    --bg-color: #ba9aed;
+
+    --bg-color: linear-gradient(109.6deg, rgb(121, 121, 216) 11.2%, rgb(172, 165, 228) 100.2%);
     --bg-color-light: #F0E7FF;
     --text-color-hover: #fff;
     --box-shadow-color: rgba(206, 178, 252, 0.48);

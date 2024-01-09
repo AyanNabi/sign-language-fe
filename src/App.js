@@ -29,11 +29,7 @@ function App(){
 
         <Route path="/category/:categoryId/words" element={<CategoryWords/>}/>
         <Route path="/category/:categoryId/words/:wordId" element={<UniquePage/>}/>
-
         <Route path="/alphabet/:letter" element={<UniqueLetter/>}/>
-
-
-
         <Route path="/sentence/:sentenceId" element={<UniquePage/>}/>
 
 

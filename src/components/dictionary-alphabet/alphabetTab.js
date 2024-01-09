@@ -37,6 +37,14 @@ const CustomCard = ({ title, content, subcontent }) => (
 );
 
 
+const CustomCountriesCard = ({  content }) => (
+  <Card className='countries-custom-card' content={content} style={{ width: 300, backgroundColor:"#F0E7FF !important" }}>
+    <p  style={{ color: 'black' }}>{content}</p>
+  </Card>
+);
+
+
+
 const CustomAllCategoryCard = ({ id, content, subcontent,  }) => (
   // <Card  className='custom-card custom-all-category-card' id={id} content={content} subcontent={subcontent}  style={{ width: 200, height: 150 }}>
   //   <p className="cusom-card-title">{content}</p>
@@ -264,7 +272,7 @@ const AlphabetTab = ({element}) => {
                 {sentencesData.map((sentence, index) => (
                   <Col key={index} xs={{ span: 12 }} sm={{ span: 12 }} md={{ span:  8}} lg={{ span: 6 }}>
                    <Link to={`/category/:categoryId/words/:wordId`}>
-                     <CustomCard className="sentences-card" content={sentence.text}/>
+                     <CustomCountriesCard className="sentences-card" content={sentence.text}></CustomCountriesCard>
                     </Link>
                   </Col>
                 ))}
